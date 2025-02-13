@@ -2,12 +2,16 @@
 
 <div class="container mt-4">
     <h3>Заметки в категории: @Model.Name</h3>
+    <form asp-action="DeleteCategory" method="post" style="display:inline;">
+        <input type="hidden" name="categoryId" value="@Model.Id" />
+        <button type="submit" class="btn btn-danger mb-3">Удалить категорию</button>
+    </form>
     <table class="table">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Content</th>
-                <th>Actions</th>
+                <th>Контент</th>
+                <th>Действия</th>
             </tr>
         </thead>
         <tbody>
@@ -19,7 +23,7 @@
                     <td>
                         <form asp-action="DeleteNote" method="post" style="display:inline;">
                             <input type="hidden" name="noteId" value="@note.Id" />
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger">Удалить</button>
                         </form>
                     </td>
                 </tr>
