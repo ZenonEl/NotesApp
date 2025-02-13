@@ -101,4 +101,19 @@ public class HomeController : Controller
         return View(category);
     }
 
+    [HttpPost]
+    public IActionResult DeleteNote(Guid noteId)
+    {
+        var note = _context.Notes.Find(noteId);
+        if (note == null)
+        {
+            TempData["ErrorMessage"] = $"Note with ID {noteId} not found.";
+            return RedirectToAction("Error");
+        }
+
+        _context.Notes.Remove(note);
+        _context.SaveChanges();
+
+        return RedirectToAction("ViewNotes", new { categoryId = note.CategoryId });
+    }
 }
