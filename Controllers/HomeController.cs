@@ -82,4 +82,23 @@ public class HomeController : Controller
 
         return RedirectToAction("Index");
     }
+
+    public IActionResult ViewNotes(Guid categoryId)
+    {
+        var category = _context.Categories.Include(c => c.Notes).FirstOrDefault(c => c.Id == categoryId);
+        if (category == null)
+        {
+            TempData["ErrorMessage"] = $"Category with ID {categoryId} not found.";
+            return RedirectToAction("Error");
+        }
+
+        // Расшифровка содержимого заметок
+        foreach (var note in category.Notes)
+        {
+            note.Content = _encryption.Decrypt(note.Content);
+        }
+
+        return View(category);
+    }
+
 }
