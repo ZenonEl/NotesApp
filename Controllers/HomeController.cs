@@ -116,4 +116,21 @@ public class HomeController : Controller
 
         return RedirectToAction("ViewNotes", new { categoryId = note.CategoryId });
     }
+
+    [HttpPost]
+    public IActionResult DeleteCategory(Guid categoryId)
+    {
+        var category = _context.Categories.Include(c => c.Notes).FirstOrDefault(c => c.Id == categoryId);
+        if (category == null)
+        {
+            TempData["ErrorMessage"] = $"Category with ID {categoryId} not found.";
+            return RedirectToAction("Error");
+        }
+
+        _context.Notes.RemoveRange(category.Notes);
+        _context.Categories.Remove(category);
+        _context.SaveChanges();
+
+        return RedirectToAction("Index");
+    }
 }
