@@ -1,0 +1,48 @@
+﻿@model List<Category>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+            <h3>Категории</h3>
+            <form method="post" asp-action="CreateCategory">
+                <div class="input-group mb-3">
+                    <input type="text" name="name" class="form-control" placeholder="Новая категория">
+                    <button class="btn btn-primary" type="submit">Создать</button>
+                </div>
+            </form>
+            <div class="list-group">
+                @foreach (var category in Model)
+                {
+                    <a href="#" class="list-group-item list-group-item-action" data-category-id="@category.Id">
+                        @category.Name
+                    </a>
+                }
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h3>Заметки</h3>
+            <form method="post" asp-action="AddNote">
+                <input type="hidden" name="categoryId" id="selectedCategoryId" />
+                <textarea id="editor" name="content"></textarea>
+                <button type="submit" class="btn btn-success mt-2">Добавить заметку</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.tiny.cloud/1/ss0x2x8628h6igofmjxeoyovnb541tldz7hmn8uai7ioqaq2/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#editor',
+            plugins: 'lists link image',
+            toolbar: 'bold italic | bullist numlist | link image'
+        });
+
+        document.querySelectorAll('.list-group-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.getElementById('selectedCategoryId').value = this.getAttribute('data-category-id');
+            });
+        });
+    </script>
+}
