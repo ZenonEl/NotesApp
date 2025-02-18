@@ -50,18 +50,22 @@ NotesApp — простое приложение для создания и уп
      ```json
      {
         "ConnectionStrings": {
-         "DefaultConnection": "Host=localhost;Database=NotesApp;Username=username;Password=your_password"
+        "DefaultConnection": "Host=localhost;Database=NotesApp;Username=username;Password=your_password"
         },
         "Logging": {
-            "LogLevel": {
+          "LogLevel": {
             "Default": "Information",
             "Microsoft.AspNetCore": "Warning"
-            }
+          }
+        },
+        "TinyMCE": {
+          "ApiKey": "yourApiKey"
         },
         "AllowedHosts": "*",
         "EncryptionKey": "YourBase16EncodedEncryptionKeyHere"
      }
      ```
+     Ключ для TinyMCE вы можете бесплатно создать на их [официальном сайте](https://www.tiny.cloud/). После создания аккаунта, пример кода и сам ключ вы можете найти на [этой странице](https://www.tiny.cloud/my-account/integrate/#html)
 
 ### Инструкции по запуску и тестированию основных функций приложения
 
