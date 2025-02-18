@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.Configure<TinyMCEConfig>(builder.Configuration.GetSection("TinyMCE"));
 builder.Services.AddScoped<EncryptionService>();
 builder.Services.AddControllersWithViews();
 
