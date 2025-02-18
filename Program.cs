@@ -7,7 +7,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.Configure<TinyMCEConfig>(builder.Configuration.GetSection("TinyMCE"));
 builder.Services.AddScoped<EncryptionService>();
+
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
@@ -30,4 +32,5 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+app.MapRazorPages();
 app.Run();
