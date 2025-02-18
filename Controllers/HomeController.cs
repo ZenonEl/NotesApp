@@ -92,7 +92,6 @@ public class HomeController : Controller
             return RedirectToAction("Error");
         }
 
-        // Расшифровка содержимого заметок
         foreach (var note in category.Notes)
         {
             note.Content = _encryption.Decrypt(note.Content);
