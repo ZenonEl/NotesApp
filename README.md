@@ -20,8 +20,8 @@ NotesApp — простое приложение для создания и уп
      dotnet tool install --global dotnet-ef
      ```
 
-4. **Установите TinyMCE**:
-   - TinyMCE будет подключен через CDN в представлениях.
+4. **Создайте ключ TinyMCE**:
+     Ключ для TinyMCE вы можете бесплатно создать на их [официальном сайте](https://www.tiny.cloud/). После создания аккаунта, пример кода и сам ключ, вы можете найти на [этой странице](https://www.tiny.cloud/my-account/integrate/#html)
 
 ### Настройка подключения к базе данных PostgreSQL
 
@@ -65,7 +65,6 @@ NotesApp — простое приложение для создания и уп
         "EncryptionKey": "YourBase16EncodedEncryptionKeyHere"
      }
      ```
-     Ключ для TinyMCE вы можете бесплатно создать на их [официальном сайте](https://www.tiny.cloud/). После создания аккаунта, пример кода и сам ключ вы можете найти на [этой странице](https://www.tiny.cloud/my-account/integrate/#html)
 
 ### Инструкции по запуску и тестированию основных функций приложения
 
